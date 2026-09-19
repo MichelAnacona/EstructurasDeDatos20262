@@ -21,4 +21,22 @@ public class OperacionesMAtrices {
         return cad;
     }
 
+    public String SumaFilasColumnas(int [][] m) {
+        String cad = "";
+        
+        int sumaFilas, sumaColumnas;
+        for (int i = 0; i < m.length; i++) {
+            sumaFilas = 0;
+            sumaColumnas = 0;
+            for (int j = 0; j < m[0].length; j++) {
+                sumaFilas += m[i][j];
+                sumaColumnas += m[j][i];
+        
+            }
+            cad += "suma Fila" + " " + i + ": ---->"+ " " + sumaFilas + "\n";
+            cad += "suma Columna" + " " + i + ": ---->"+ " " + sumaColumnas + "\n";
+        }
+        return cad;
+    }
+
 }
