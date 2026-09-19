@@ -9,12 +9,16 @@ public class OperacionesMAtrices {
         return m;
     }
     public String imprimirMatriz(int [][] m) {
+        String cad = "";
         for (int i = 0; i < m.length; i++) {
+            cad += "|";
             for (int j = 0; j < m[0].length; j++) {
-                m[i][j] = (int) (Math.random() * (max - min - 1) + min);
+                cad += m[i][j] + "|";
+                ;
             }
+            cad += "\n";
         }
-        return "";
+        return cad;
     }
 
 }
