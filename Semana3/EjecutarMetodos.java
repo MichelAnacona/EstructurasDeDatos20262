@@ -1,3 +1,5 @@
+package Semana3;
+
 public class EjecutarMetodos {
     public static void main(String[] args) {
         OperacionesMAtrices objM = new OperacionesMAtrices();

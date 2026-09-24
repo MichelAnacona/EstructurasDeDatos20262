@@ -1,3 +1,5 @@
+package Semana3;
+
 //SUMAR LOS ELEMENTOS DE CADA FILA Y CADA COLUMNA DE UNA MATRIZ
 
 public class Punto17 {
