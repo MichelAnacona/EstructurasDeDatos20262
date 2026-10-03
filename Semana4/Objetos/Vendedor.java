@@ -8,6 +8,6 @@ public class Vendedor extends Trabajador {
     }
 
 public double pagar(){
-        return getSalarioBase() * ( 1 + (100 / comision));
+        return getSalarioBase() * ( 1 + (comision / 100));
     }
 }
