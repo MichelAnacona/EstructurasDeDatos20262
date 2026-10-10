@@ -1,3 +1,5 @@
+import Semana5.Taller.Actividad2.Trabajador;
+
 public class Main {
     public static void main(String[] args) {
         Trabajador obj1 = new Trabajador(1, "juan", "perez", 30, 1000.0);

@@ -1,3 +1,5 @@
+import Semana5.Taller.Actividad2.Trabajador;
+
 public class Trabajador {
     private int id;
     private String nombre;
