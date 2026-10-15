@@ -1,8 +1,5 @@
 package Semana5.Taller.Actividad2;
 
-import java.util.*;
-
-//Cada producto debe tener código, nombre, precio y cantidad disponible.
 public class Producto {
     private int codigo;
     private String nombre;
@@ -35,38 +32,88 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" + "codigo=" + codigo + ", nombre=" + nombre + ", precio=" + precio + ", cantidad=" + cantidad
-                + '}';
+        return "Producto{" + "codigo=" + codigo + ", nombre=" + nombre + ", precio=" + precio
+                + ", cantidad=" + cantidad + '}';
     }
 
-    // Requerimientos:
-    // • Registrar productos en posiciones específicas.
-    // • Mostrar los productos indicando fila y columna.
-    // • Buscar un producto por código.
-    // • Calcular el valor total del inventario.
-    // • Identificar el producto con mayor cantidad disponible y contar las
-    // posiciones vacías.
-
-    public Producto[][] llenarMatriz(int i, int j, Producto p) {
-        Producto[][] m = new Producto[3][4];
-        for (int k = 0; k < m.length; k++) {
-            for (int l = 0; l < m[0].length; l++) {
-                m[i][j] = p;
-            }
+    // Metodo para registrar un producto en una posicion especifica de la matriz
+    public static boolean registrar(Producto[][] m, int fila, int columna, Producto p) {
+        if (fila < 0 || fila >= m.length || columna < 0 || columna >= m[0].length) {
+            System.out.println("Posicion [" + fila + "][" + columna + "] fuera de la matriz");
+            return false;
         }
-        return m;
+        if (m[fila][columna] != null) {
+            System.out.println("La posicion [" + fila + "][" + columna + "] ya esta ocupada");
+            return false;
+        }
+        m[fila][columna] = p;
+        return true;
     }
 
-    public Producto leerMatriz(int f, int c, Scanner sc) {
-        Producto[][] m = new Producto[f][c];
+    // Metodo para mostrar los productos indicando fila y columna
+    public static void mostrar(Producto[][] m) {
         for (int i = 0; i < m.length; i++) {
-            for (int j = 0; j < m[0].length; j++) {
-                if (i == f && j == c) {
-                    Producto p = m[f][c];
+            for (int j = 0; j < m[i].length; j++) {
+                if (m[i][j] != null) {
+                    System.out.println("Fila " + i + ", Columna " + j + " -> " + m[i][j]);
+                } else {
+                    System.out.println("Fila " + i + ", Columna " + j + " -> [vacia]");
                 }
             }
-            return p;
         }
+    }
 
+    // Metodo para buscar un producto por codigo, imprime su ubicacion
+    public static Producto buscarPorCodigo(Producto[][] m, int codigo) {
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[i].length; j++) {
+                if (m[i][j] != null && m[i][j].getCodigo() == codigo) {
+                    System.out.println("Encontrado en fila " + i + ", columna " + j);
+                    return m[i][j];
+                }
+            }
+        }
+        return null;
+    }
+
+    // Metodo que calcula el valor total del inventario (precio * cantidad)
+    public static double valorTotal(Producto[][] m) {
+        double total = 0.0;
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[i].length; j++) {
+                if (m[i][j] != null) {
+                    total += m[i][j].getPrecio() * m[i][j].getCantidad();
+                }
+            }
+        }
+        return total;
+    }
+
+    // Metodo que identifica el producto con mayor cantidad disponible
+    public static Producto mayorCantidad(Producto[][] m) {
+        Producto mayor = null;
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[i].length; j++) {
+                if (m[i][j] != null) {
+                    if (mayor == null || m[i][j].getCantidad() > mayor.getCantidad()) {
+                        mayor = m[i][j];
+                    }
+                }
+            }
+        }
+        return mayor;
+    }
+
+    // Metodo que cuenta las posiciones vacias de la matriz
+    public static int contarVacias(Producto[][] m) {
+        int vacias = 0;
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[i].length; j++) {
+                if (m[i][j] == null) {
+                    vacias++;
+                }
+            }
+        }
+        return vacias;
     }
 }
