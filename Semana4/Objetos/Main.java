@@ -1,4 +1,4 @@
-import Semana5.Taller.Actividad2.Trabajador;
+
 
 public class Main {
     public static void main(String[] args) {

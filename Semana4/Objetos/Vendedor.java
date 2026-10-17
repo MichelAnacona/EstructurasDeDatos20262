@@ -1,4 +1,4 @@
-import Semana5.Taller.Actividad2.Trabajador;
+
 
 public class Vendedor extends Trabajador {
     private int comision;
