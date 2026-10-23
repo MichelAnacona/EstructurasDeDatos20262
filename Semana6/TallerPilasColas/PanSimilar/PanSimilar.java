@@ -1,3 +1,11 @@
+//2. Pan similar (Deque como cola de doble extremo)
+//Enunciado. Representa un sandwich como una secuencia: pan - relleno - pan. Dados dos sandwiches,
+//verificar si usan el mismo pan al inicio y al final.
+//Ejemplos de verificacion.
+//Entrada: S1 = ["pan blanco", "lechuga", "pan blanco"], S2 = ["pan blanco", "tomate", "pan blanco"]
+//Salida esperada: true
+//Entrada: S1 = ["pan integral", "queso", "pan integral"], S2 = ["pan blanco", "queso", "pan integral"]
+//Salida esperada: false
 
 package Semana6.TallerPilasColas.PanSimilar;
 
@@ -5,28 +13,14 @@ import java.util.*;
 
 public class PanSimilar {
     public static void main(String[] args) {
-        Deque<String> s1 = new ArrayDeque<>();
-        Deque<String> s2 = new ArrayDeque<>();
-        Deque<String> s3 = new ArrayDeque<>();
-        Deque<String> s4 = new ArrayDeque<>();
+        System.out.println("----------------- CASO 1 ----------------");
+        Deque<String> s1 = Sandwish.crearSandwich(new ArrayList<>(Arrays.asList("pan blanco", "lechuga", "pan blanco")));
+        Deque<String> s2 = Sandwish.crearSandwich(new ArrayList<>(Arrays.asList("pan blanco", "tomate", "pan blanco")));
+        Sandwish.mostrar(s1, s2);
 
-        s1.addLast("pan blanco");
-        s1.addLast("lechuga");
-        s1.addLast("pan blanco");
-
-        s2.addLast("pan blanco");
-        s2.addLast("tomate");
-        s2.addLast("pan blanco");
-        Sandwish.verificarPan(s1, s2);
-
-        s3.addLast("pan integral");
-        s3.addLast("queso");
-        s3.addLast("pan integral");
-
-        s4.addLast("pan blanco");
-        s4.addLast("queso");
-        s4.addLast("pan integral");
-        Sandwish.verificarPan(s3, s4);
-
+        System.out.println("----------------- CASO 2 ----------------");
+        Deque<String> s3 = Sandwish.crearSandwich(new ArrayList<>(Arrays.asList("pan integral", "queso", "pan integral")));
+        Deque<String> s4 = Sandwish.crearSandwich(new ArrayList<>(Arrays.asList("pan blanco", "queso", "pan integral")));
+        Sandwish.mostrar(s3, s4);
     }
 }

@@ -1,25 +1,33 @@
-//2. Pan similar (Deque como cola de doble extremo)
-//Enunciado. Representa un sandwich como una secuencia: pan– relleno– pan. Dados dos sandwiches, verificar si usan el mismo pan al inicio y al final.
-//Ejemplos de verificacion.
-//Entrada: S1 = [“pan blanco”, “lechuga”, “pan blanco”], S2 = [“pan blanco”, “tomate”, “pan blanco”]Salida esperada: true
-//Entrada: S1 = [“pan integral”, “queso”, “pan integral”], S2 = [“pan blanco”, “queso”, “pan integral”]
-//Salida esperada: false
 package Semana6.TallerPilasColas.PanSimilar;
 
 import java.util.*;
 
 public class Sandwish {
 
-    public static void verificarPan(Deque<String> s1) {
+    // Metodo que crea un sandwich (Deque) a partir de un ArrayList de ingredientes
+    public static Deque<String> crearSandwich(ArrayList<String> ingredientes) {
+        Deque<String> sandwich = new ArrayDeque<>();
+        for (String ingrediente : ingredientes) {
+            sandwich.addLast(ingrediente);
+        }
+        return sandwich;
+    }
 
-        if (s1.isEmpty()) {
-            System.out.println(("No"));
+    // Metodo que verifica si dos sandwiches usan el mismo pan al inicio y al final
+    public static boolean verificarPan(Deque<String> s1, Deque<String> s2) {
+        if (s1.isEmpty() || s2.isEmpty()) {
+            System.out.println("Uno de los sandwiches esta vacio");
+            return false;
         }
-        // Comparar el pan del inicio y del final
-        if (s1.peekFirst().equals(s1.peekLast())) {
-            System.out.println((s1+"|"+s1.peekFirst()+"|"+s1.peekFirst()+"|"+s1.peekLast()));
-            System.out.println(("si"));
-        }
-        return;
+        boolean mismoInicio = s1.peekFirst().equals(s2.peekFirst());
+        boolean mismoFinal = s1.peekLast().equals(s2.peekLast());
+        return mismoInicio && mismoFinal;
+    }
+
+    // Metodo que muestra los sandwiches y el resultado
+    public static void mostrar(Deque<String> s1, Deque<String> s2) {
+        System.out.println("S1 = " + s1 + " | inicio: " + s1.peekFirst() + " | final: " + s1.peekLast());
+        System.out.println("S2 = " + s2 + " | inicio: " + s2.peekFirst() + " | final: " + s2.peekLast());
+        System.out.println("Salida: " + verificarPan(s1, s2));
     }
 }

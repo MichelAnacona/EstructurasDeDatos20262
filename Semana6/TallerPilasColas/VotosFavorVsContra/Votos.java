@@ -1,55 +1,37 @@
-
 package Semana6.TallerPilasColas.VotosFavorVsContra;
 
 import java.util.*;
 
 public class Votos {
 
-    static int aFavor = 0;
-    static int enContra = 0;
-
-    public static boolean registrar(Queue<String> votantes, String v) {
-        votantes.add(v);
-        System.out.println("Registrada: " + v);
-        return true;
+    // Metodo que crea la cola de votos: cada voto a favor es +1 y cada voto en contra es -1
+    public static Queue<Integer> crearCola(int upvotes, int downvotes) {
+        Queue<Integer> cola = new LinkedList<>();
+        for (int i = 0; i < upvotes; i++) {
+            cola.offer(1);
+        }
+        for (int i = 0; i < downvotes; i++) {
+            cola.offer(-1);
+        }
+        return cola;
     }
 
-    public static void aFavor(Queue<String> votantes) {
-
-        if (votantes.isEmpty()) {
-            System.out.println("No puedes votar, ya votaron todos");
-            return;
+    // Metodo que procesa la cola sumando cada voto hasta vaciarla
+    public static int procesar(Queue<Integer> cola) {
+        int total = 0;
+        while (!cola.isEmpty()) {
+            total += cola.poll();
         }
-
-        votantes.poll();
-        aFavor++;
-
-        System.out.println("Votaste a favor");
+        return total;
     }
 
-    public static void enContra(Queue<String> votantes) {
-
-        if (votantes.isEmpty()) {
-            System.out.println("No puedes votar, ya votaron todos");
-            return;
-        }
-
-        votantes.poll();
-        enContra++;
-
-        System.out.println("Votaste en contra");
-    }
-
-    public static void mostrar(Queue<String> cola) {
-
-        int salida = aFavor - enContra;
-
-        System.out.println("Entrada: upvotes " + aFavor
-                + " Downvotes " + enContra
-                + " Salida esperada " + salida);
-
-        if (cola.isEmpty()) {
-            System.out.println("No quedan votantes");
-        }
+    // Metodo que muestra la entrada y la salida de cada caso
+    public static void mostrar(int upvotes, int downvotes) {
+        Queue<Integer> cola = crearCola(upvotes, downvotes);
+        System.out.println("Votos en cola: " + cola.size());
+        int resultado = procesar(cola);
+        System.out.println("Entrada: upvotes = " + upvotes + ", downvotes = " + downvotes
+                + " -> Salida: " + resultado);
+        System.out.println("Cola vacia al final: " + cola.isEmpty());
     }
 }
